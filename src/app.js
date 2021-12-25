@@ -3,8 +3,14 @@ import route from './routes/route.js';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import sequelize from './db/connection.js';
-
+import session from 'cookie-session';
 const app=express();
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
 console.log("path",path.resolve()+'/src/views')
 app.use(expressLayouts);
 app.set('views', path.join(path.resolve(), 'src/views'));
